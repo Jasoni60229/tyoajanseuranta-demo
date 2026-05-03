@@ -1,138 +1,101 @@
-# Työajanseuranta demo
-
-Tämä projekti on yksinkertainen Chrome-selaimessa toimiva työajanseurantaohjelmiston demo. Ohjelma on tehty Pythonilla ja Flaskilla. Toteutus on tarkoitettu opiskelijaprojektin demoksi, ei valmiiksi tuotantojärjestelmäksi.
-
-## Projektin tarkoitus
-
-Sovelluksen tarkoituksena on näyttää, miten pienessä yrityksessä toimitusjohtaja ja työntekijät voisivat käyttää työajanseurantaa. Käyttäjiä on kaksi roolia:
-
-- Toimitusjohtaja
-- Työntekijä
-
-Kirjautumisessa valitaan testirooli. Oikeaa käyttäjä- tai salasanojenhallintaa ei ole, koska se on rajattu pois projektista.
-
-## Toteutetut ominaisuudet
-
-### Kirjautuminen
-
-- Käyttäjä voi valita roolin kirjautumisnäytöltä.
-- Toimitusjohtaja voi kirjautua suoraan toimitusjohtajan näkymään.
-- Työntekijä valitsee yhden viidestä testityöntekijästä.
-
-### Työntekijän käyttöliittymä
-
-Työntekijä voi:
-
-- Aloittaa työajanseurannan.
-- Lopettaa aloitetun työajanseurannan.
-- Tarkastella aikaisempia työaikakirjauksiaan.
-
-### Toimitusjohtajan käyttöliittymä
-
-Toimitusjohtaja voi:
-
-- Tarkastella työaikoja työntekijäkohtaisesti.
-- Muokata työntekijöiden työaikakirjauksia.
-- Tarkastella poikkeamia, esimerkiksi puuttuvia kirjauksia.
-- Hyväksyä työaikakirjauksia yksittäin.
-- Hyväksyä kaikki odottavat työaikakirjaukset kerralla.
-
-## Rajaukset
-
-Projektissa ei ole toteutettu:
-
-- Integraatiota muihin järjestelmiin.
-- Uusien työntekijöiden lisäämistä.
-- Käyttäjienhallintaa.
-- Salasanojenhallintaa.
-- Varsinaista tietokantaa.
-
-Tiedot ovat ohjelman muistissa. Kun sovellus käynnistetään uudelleen, tiedot palautuvat alkuperäiseen testidataan.
-
-## Teknologiat
-
-- Python 3
-- Flask
-- HTML
-- CSS
-- Chrome-selain
+# Työajanseuranta Demo
 
 ## Käyttöönotto
 
-1. Lataa tai kloonaa Git-repo omalle koneelle.
-2. Avaa komentorivi projektikansiossa.
-3. Luo virtuaaliympäristö:
+1. Lataa projekti:
 
 ```bash
-python -m venv venv
+git clone https://github.com/KAYTTAJA/tyoajanseuranta-demo.git
 ```
 
-4. Ota virtuaaliympäristö käyttöön.
-
-Windows:
+2. Siirry projektikansioon:
 
 ```bash
-venv\Scripts\activate
+cd tyoajanseuranta-demo
 ```
 
-macOS/Linux:
-
-```bash
-source venv/bin/activate
-```
-
-5. Asenna riippuvuudet:
+3. Asenna riippuvuudet:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-6. Käynnistä sovellus:
+4. Käynnistä sovellus:
 
 ```bash
 python app.py
 ```
 
-7. Avaa Chrome-selaimessa osoite:
+5. Avaa selain (Chrome):
 
-```text
+```
 http://127.0.0.1:5000
 ```
 
+---
+
 ## Testausohje
 
-1. Avaa sovellus selaimessa.
-2. Kirjaudu työntekijänä ja valitse testityöntekijä.
-3. Aloita työaika.
-4. Lopeta työaika.
-5. Tarkista, että uusi kirjaus näkyy edellisissä kirjauksissa tilalla `odottaa`.
-6. Kirjaudu ulos.
-7. Kirjaudu toimitusjohtajana.
-8. Avaa työaikojen hyväksyminen.
-9. Hyväksy yksittäinen kirjaus tai kaikki kirjaukset kerralla.
-10. Tarkista työntekijäkohtaisesta tarkastelusta, että tila muuttui hyväksytyksi.
+### Kirjautuminen
 
-## Projektin rakenne
+* Sovelluksessa ei ole oikeaa tunnistautumista
+* Valitse rooli:
 
-```text
-tyoajanseuranta_demo/
-├── app.py
-├── requirements.txt
-├── README.md
-├── static/
-│   └── style.css
-└── templates/
-    ├── base.html
-    ├── login.html
-    ├── employee.html
-    ├── employee_entries.html
-    ├── ceo_nav.html
-    ├── ceo_employees.html
-    ├── edit_entry.html
-    ├── ceo_exceptions.html
-    └── ceo_approvals.html
-```
+  * Toimitusjohtaja
+  * Työntekijä
 
-## Huomioita jatkokehitykseen
+---
 
-Jos sovellusta jatkokehitetään, siihen voisi lisätä oikean tietokannan, käyttäjätunnukset, salasanat, vientitoiminnon ja tarkemman raportoinnin. Tässä demossa keskityttiin projektin vaatimusten mukaiseen yksinkertaiseen ja selkeään toimintaan.
+### Työntekijä (testaus)
+
+1. Valitse rooliksi **Työntekijä**
+2. Aloita työaika painamalla **Aloita**
+3. Lopeta työaika painamalla **Lopeta**
+4. Tarkastele aiempia kirjauksia näkymässä
+
+Testaa:
+
+* Et voi lopettaa ilman aloitusta
+* Useita kirjauksia tallentuu listaan
+
+---
+
+### Toimitusjohtaja (testaus)
+
+1. Valitse rooliksi **Toimitusjohtaja**
+
+Testaa seuraavat:
+
+#### Työntekijäkohtainen tarkastelu
+
+* Näet kaikkien työntekijöiden kirjaukset
+
+#### Poikkeamat
+
+* Näet puuttuvat kirjaukset (demo-logiikka)
+
+#### Hyväksyntä
+
+* Hyväksy yksittäinen kirjaus
+* Hyväksy kaikki kirjaukset
+
+#### Muokkaus
+
+* Muokkaa työntekijän työaikoja (demo)
+
+---
+
+### Virhetilanteet
+
+Testaa:
+
+* Lopetus ilman aloitusta → virheilmoitus
+* Tyhjät kirjaukset → ilmoitus
+
+---
+
+## Huomio
+
+* Sovellus on demoversio
+* Ei sisällä oikeaa käyttäjähallintaa
+* Ei tallenna tietoja pysyvästi (muistiin)
