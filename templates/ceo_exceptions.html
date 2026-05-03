@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "ceo_nav.html" %}
+
+<div class="card">
+    <h1>Poikkeuksien tarkastelu</h1>
+    <p>Poikkeuksissa näytetään testinä viimeisten viiden arkipäivän kirjaamattomat päivät.</p>
+
+    {% if exceptions %}
+        <table>
+            <tr>
+                <th>Työntekijä</th>
+                <th>Päivä</th>
+                <th>Poikkeama</th>
+            </tr>
+            {% for exception in exceptions %}
+                <tr>
+                    <td>{{ exception.employee }}</td>
+                    <td>{{ exception.date }}</td>
+                    <td>{{ exception.reason }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Poikkeamia ei löytynyt.</p>
+    {% endif %}
+</div>
+{% endblock %}

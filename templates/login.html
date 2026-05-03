@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Kirjautuminen</h1>
+    <p>Valitse testirooli. Demossa ei ole salasanojenhallintaa projektin rajauksen mukaisesti.</p>
+
+    <form method="post">
+        <label>Rooli</label>
+        <select name="role" id="role" onchange="toggleEmployee()">
+            <option value="ceo">Toimitusjohtaja</option>
+            <option value="employee">Työntekijä</option>
+        </select>
+
+        <div id="employeeBox" style="display:none;">
+            <label>Työntekijä</label>
+            <select name="employee_id">
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="button" type="submit">Kirjaudu</button>
+    </form>
+</div>
+
+<script>
+function toggleEmployee() {
+    const role = document.getElementById("role").value;
+    document.getElementById("employeeBox").style.display = role === "employee" ? "block" : "none";
+}
+</script>
+{% endblock %}

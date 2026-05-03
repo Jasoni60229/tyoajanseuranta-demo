@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "ceo_nav.html" %}
+
+<div class="card">
+    <h1>Työaikojen hyväksyminen</h1>
+
+    {% if entries %}
+        <form method="post" action="{{ url_for('approve_all_entries') }}">
+            <button class="button success" type="submit">Hyväksy kaikki</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Työntekijä</th>
+                <th>Päivä</th>
+                <th>Aloitus</th>
+                <th>Lopetus</th>
+                <th>Tunnit</th>
+                <th>Toiminto</th>
+            </tr>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ employee_name(entry.employee_id) }}</td>
+                    <td>{{ entry.work_date }}</td>
+                    <td>{{ entry.start }}</td>
+                    <td>{{ entry.end }}</td>
+                    <td>{{ calculate_hours(entry.start, entry.end) }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('approve_entry', entry_id=entry.id) }}">
+                            <button class="button" type="submit">Hyväksy</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Hyväksyttäviä työaikakirjauksia ei ole.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #222;
+}
+
+.header {
+    background: #17324d;
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 12px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav a {
+    display: inline-block;
+    margin: 4px 8px 4px 0;
+    padding: 10px 12px;
+    background: #e7eef6;
+    color: #17324d;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.nav a:hover, .button:hover {
+    opacity: 0.9;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    max-width: 420px;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #b8c2cc;
+    border-radius: 6px;
+}
+
+.button {
+    display: inline-block;
+    border: 0;
+    background: #2364aa;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.button.secondary {
+    background: #5c677d;
+}
+
+.button.success {
+    background: #2d7d46;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #dde3ea;
+    text-align: left;
+}
+
+th {
+    background: #edf2f7;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.message.success {
+    background: #d9f3df;
+    border: 1px solid #95d5a4;
+}
+
+.message.error {
+    background: #ffe0e0;
+    border: 1px solid #e49a9a;
+}
+
+.status {
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .header {
+        display: block;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}

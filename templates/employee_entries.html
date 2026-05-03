@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="nav">
+    <a href="{{ url_for('employee_home') }}">Työajan aloitus ja lopetus</a>
+    <a href="{{ url_for('employee_entries') }}">Edelliset kirjaukset</a>
+</div>
+
+<div class="card">
+    <h1>Edelliset työaikakirjaukset</h1>
+    {% if entries %}
+        <table>
+            <tr>
+                <th>Päivä</th>
+                <th>Aloitus</th>
+                <th>Lopetus</th>
+                <th>Tunnit</th>
+                <th>Tila</th>
+            </tr>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.work_date }}</td>
+                    <td>{{ entry.start }}</td>
+                    <td>{{ entry.end or '-' }}</td>
+                    <td>{{ calculate_hours(entry.start, entry.end) }}</td>
+                    <td class="status">{{ entry.status }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Työaikakirjauksia ei ole vielä.</p>
+    {% endif %}
+</div>
+{% endblock %}

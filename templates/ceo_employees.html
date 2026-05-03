@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "ceo_nav.html" %}
+
+<div class="card">
+    <h1>Työntekijäkohtainen tarkastelu</h1>
+    <form method="get">
+        <label>Valitse työntekijä</label>
+        <select name="employee_id" onchange="this.form.submit()">
+            {% for employee in employees %}
+                <option value="{{ employee.id }}" {% if employee.id == selected_employee_id %}selected{% endif %}>{{ employee.name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if entries %}
+        <table>
+            <tr>
+                <th>Päivä</th>
+                <th>Aloitus</th>
+                <th>Lopetus</th>
+                <th>Tunnit</th>
+                <th>Tila</th>
+                <th>Toiminto</th>
+            </tr>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.work_date }}</td>
+                    <td>{{ entry.start }}</td>
+                    <td>{{ entry.end or '-' }}</td>
+                    <td>{{ calculate_hours(entry.start, entry.end) }}</td>
+                    <td class="status">{{ entry.status }}</td>
+                    <td><a class="button secondary" href="{{ url_for('ceo_edit_entry', entry_id=entry.id) }}">Muokkaa</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Valitulla työntekijällä ei ole työaikakirjauksia.</p>
+    {% endif %}
+</div>
+{% endblock %}

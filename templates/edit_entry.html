@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "ceo_nav.html" %}
+
+<div class="card">
+    <h1>Muokkaa työaikakirjausta</h1>
+    <p>Työntekijä: <strong>{{ employee_name(entry.employee_id) }}</strong></p>
+
+    <form method="post">
+        <label>Päivämäärä</label>
+        <input type="date" name="work_date" value="{{ entry.work_date }}" required>
+
+        <label>Aloitusaika</label>
+        <input type="time" name="start" value="{{ entry.start }}" required>
+
+        <label>Lopetusaika</label>
+        <input type="time" name="end" value="{{ entry.end }}" required>
+
+        <button class="button" type="submit">Tallenna</button>
+        <a class="button secondary" href="{{ url_for('ceo_employee_view', employee_id=entry.employee_id) }}">Peruuta</a>
+    </form>
+</div>
+{% endblock %}

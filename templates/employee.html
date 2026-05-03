@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="nav">
+    <a href="{{ url_for('employee_home') }}">Työajan aloitus ja lopetus</a>
+    <a href="{{ url_for('employee_entries') }}">Edelliset kirjaukset</a>
+</div>
+
+<div class="card">
+    <h1>Työajan aloitus ja lopetus</h1>
+
+    {% if open_entry %}
+        <p>Työajanseuranta on käynnissä.</p>
+        <p><strong>Aloitusaika:</strong> {{ open_entry.start }} / {{ open_entry.work_date }}</p>
+        <form method="post" action="{{ url_for('stop_work') }}">
+            <button class="button success" type="submit">Lopeta työaika</button>
+        </form>
+    {% else %}
+        <p>Työajanseuranta ei ole tällä hetkellä käynnissä.</p>
+        <form method="post" action="{{ url_for('start_work') }}">
+            <button class="button" type="submit">Aloita työaika</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
