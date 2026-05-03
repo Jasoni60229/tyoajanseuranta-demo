@@ -2,31 +2,61 @@
 
 ## Käyttöönotto
 
-1. Lataa projekti:
+### 1. Lataa projekti
 
-```bash
-git clone https://github.com/KAYTTAJA/tyoajanseuranta-demo.git
+1. Mene projektin sivulle GitHub
+2. Klikkaa **Code** → **Download ZIP**
+3. Tallenna tiedosto koneellesi
+
+---
+
+### 2. Pura ZIP-tiedosto
+
+* Mene latauksiin
+* Klikkaa zip-tiedostoa hiiren oikealla
+* Valitse **Pura kaikki (Extract All)**
+
+Saat kansion, esim:
+
+```
+tyoajanseuranta-demo-main
 ```
 
-2. Siirry projektikansioon:
+---
 
-```bash
-cd tyoajanseuranta-demo
+### 3. Avaa kansio komentokehotteessa
+
+1. Avaa kansio
+2. Klikkaa kansion sisällä hiiren oikealla
+3. Valitse:
+
+   * **Open in Terminal** / **Avaa PowerShell täällä**
+
+---
+
+### 4. Asenna riippuvuudet
+
+```
+pip install flask
 ```
 
-3. Asenna riippuvuudet:
+(Tai vaihtoehtoisesti:)
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
-4. Käynnistä sovellus:
+---
 
-```bash
+### 5. Käynnistä sovellus
+
+```
 python app.py
 ```
 
-5. Avaa selain (Chrome):
+---
+
+### 6. Avaa selain (Chrome)
 
 ```
 http://127.0.0.1:5000
